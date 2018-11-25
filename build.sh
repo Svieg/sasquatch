@@ -1,20 +1,6 @@
 #!/bin/sh
 # Script to download squashfs-tools v4.3, apply the patches, perform a clean build, and install.
 
-# If not root, perform 'make install' with sudo
-if [ "$UID" = "0" ]
-then
-    SUDO=""
-else
-    echo $UID
-    SUDO="sudo"
-fi
-
-# Install prerequisites
-if hash apt-get &>/dev/null
-then
-    $SUDO apt-get install build-essential liblzma-dev liblzo2-dev zlib1g-dev
-fi
 
 # Make sure we're working in the same directory as the build.sh script
 cd $(dirname `readlink  -f $0`)
@@ -35,4 +21,4 @@ tar -zxvf squashfs4.3.tar.gz
 cd squashfs4.3
 patch -p0 < ../patches/patch0.txt
 cd squashfs-tools
-make && $SUDO make install
+make && make install
