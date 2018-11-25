@@ -6,6 +6,7 @@ if [ "$UID" = "0" ]
 then
     SUDO=""
 else
+    echo $UID
     SUDO="sudo"
 fi
 
